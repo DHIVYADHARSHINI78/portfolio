@@ -5,7 +5,7 @@ import { FaEnvelope, FaPhoneAlt, FaWhatsapp, FaGithub } from 'react-icons/fa';
 const Contact = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-4xl p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
+      <div className="w-full max-w-4xl p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg mt-1 mb-14">
         <h2 className="text-2xl sm:text-4xl font-bold text-center text-blue-300 underline mb-8 sm:mb-10">
           CONTACT
         </h2>
