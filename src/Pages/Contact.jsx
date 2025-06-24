@@ -1,8 +1,34 @@
-
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { FaEnvelope, FaPhoneAlt, FaWhatsapp, FaGithub } from 'react-icons/fa';
 
 const Contact = () => {
+  const formRef = useRef(null);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(formRef.current);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+    console.log(result); 
+
+    if (result.success) {
+      formRef.current.reset(); 
+      setSubmitted(true); 
+     
+      window.location.href =
+        "https://wa.me/917867077402?text=Hi%20Dhivya,%20I%20have%20submitted%20the%20form!";
+    } else {
+      alert("❌ Message failed to send.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-4xl p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg mt-1 mb-14">
@@ -10,14 +36,19 @@ const Contact = () => {
           CONTACT
         </h2>
 
-      
+        {submitted && (
+          <p className="text-green-600 font-semibold text-center mb-6">
+            ✅ Message sent successfully!
+          </p>
+        )}
+
         <form
-          action="https://api.web3forms.com/submit"
-          method="POST"
+          ref={formRef}
+          onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6"
         >
-       
           <input type="hidden" name="access_key" value="dcef4d89-daa9-47b2-b3d9-044832b1667b" />
+          <input type="hidden" name="replyto" value="dhivyak463@gmail.com" />
 
           <input
             type="text"
@@ -55,7 +86,7 @@ const Contact = () => {
           </button>
         </form>
 
-       
+    
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6 text-gray-600 justify-items-center">
           <a
             href="mailto:dhivyak463@gmail.com"

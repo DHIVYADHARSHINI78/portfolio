@@ -28,7 +28,7 @@ const Home = () => {
       </p>
 
        <a
-        href="/Dhivyadharshini_res.pdf"
+        href="/DhivyadharshiniK_res.pdf"
         download
         className="mt-6 inline-block px-6 py-2 bg-blue-400 text-white font-semibold rounded-md hover:bg-blue-700 transition"
       >
